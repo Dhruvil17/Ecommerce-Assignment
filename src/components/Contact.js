@@ -1,6 +1,13 @@
 import React from "react";
 
 const Contact = () => {
+    const handleSubmit = (event) => {
+        if (!event.target.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+    };
+
     return (
         <div>
             <section>
@@ -9,13 +16,14 @@ const Contact = () => {
                         Contact Us
                     </h2>
                     <p className="md:mx-[10%] mt-10 lg:mb-16 font-light text-center sm:text-xl">
-                        Have any questions for us ? Fill out the form and we'll
+                        Have any questions for us? Fill out the form and we'll
                         respond as soon as possible.
                     </p>
                     <form
                         action="https://formspree.io/f/xjkbogvn"
                         method="POST"
-                        className="space-y-8">
+                        className="space-y-8"
+                        onSubmit={handleSubmit}>
                         <div className="md:mx-[10%]">
                             <label
                                 htmlFor="name"
@@ -27,7 +35,7 @@ const Contact = () => {
                                 name="Full Name:"
                                 id="name"
                                 className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
-                                required=""
+                                required
                             />
                         </div>
                         <div className="md:mx-[10%]">
@@ -41,7 +49,7 @@ const Contact = () => {
                                 name="Email ID:"
                                 id="email"
                                 className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
-                                required=""
+                                required
                             />
                         </div>
                         <div className="md:mx-[10%]">
@@ -55,7 +63,7 @@ const Contact = () => {
                                 name="Subject:"
                                 id="subject"
                                 className="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500"
-                                required=""
+                                required
                             />
                         </div>
                         <div className="sm:col-span-2 md:mx-[10%]">
