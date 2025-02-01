@@ -1,4 +1,5 @@
 import Card from "./Card";
+import axios from "axios";
 import Shimmer from "./Shimmer";
 import { useEffect, useState } from "react";
 
@@ -6,9 +7,14 @@ const Products = () => {
     const [products, setProducts] = useState([]);
 
     const fetchData = async () => {
-        const data = await fetch("https://fakestoreapi.com/products");
-        const json = await data.json();
-        setProducts(json);
+        try {
+            const response = await axios.get(
+                "https://fakestoreapi.com/products"
+            );
+            setProducts(response.data);
+        } catch (error) {
+            console.error("Error fetching products:", error);
+        }
     };
 
     useEffect(() => {
